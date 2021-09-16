@@ -1,5 +1,7 @@
 #!/bin/bash +eux
+# this is a quick and dirty way to flash ESP32-S2. It could use some additional logic to make sure the com port is present and that the esp32_s2 is a valid chip.
 
+# change to match the com port of your system. This works for Macs
 esptool.py --port /dev/cu.usbmodem01 chip_id
 
 esptool.py --port /dev/cu.usbmodem01 erase_flash
