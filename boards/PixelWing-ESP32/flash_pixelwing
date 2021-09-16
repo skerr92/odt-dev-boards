@@ -1,0 +1,30 @@
+#!/bin/bash +eux
+
+esptool.py --port /dev/cu.usbmodem01 chip_id
+
+esptool.py --port /dev/cu.usbmodem01 erase_flash
+
+esptool.py --port /dev/cu.usbmodem01 --after=no_reset write_flash 0x0 firmware.bin
+
+echo "sleep for 2 seconds..."
+sleep 2
+echo "sleeping.. hit restart button now"
+sleep 10
+
+echo "navigating to CIRCUITPY drive..."
+cd /Volumes/CIRCUITPY
+
+echo "removing code.py and lib folder..."
+
+rm -rf code.py lib/
+
+ls -a
+
+echo "copying code.py + libraries over"
+
+cp -r ~/Documents/PixelWing/base_program/* .
+
+echo "moving back to base directory..."
+cd ~/Documents/PixelWing
+
+echo "finished loading firmware..."
